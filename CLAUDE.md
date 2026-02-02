@@ -1,36 +1,112 @@
-# Claude Code Guidelines
+# Claude Code Instructions
 
-This is a dotfiles repository for macOS development environment setup.
+This is RC's dotfiles repository. When asked to set up this Mac, follow these instructions.
 
-## Structure
+## First-Time Setup
 
-- `setup.sh` - Main bootstrap script, runs on fresh machines
-- `Brewfile` - Homebrew Bundle file listing all packages and casks
-- `.zshrc` - Zsh config with Oh My Zsh plugins
-- `.gitconfig` - Git aliases and user configuration
-- `config/zed/settings.json` - Zed editor settings
+Run these steps in order:
 
-## Conventions
+1. **Install Xcode Command Line Tools** (if not installed):
+   ```bash
+   xcode-select --install
+   ```
+   Wait for installation to complete before proceeding.
 
-- All config files are symlinked from `~/dotfiles/` to `~/`
-- The setup script backs up existing files before linking
-- Brewfile uses `brew` for CLI tools and `cask` for GUI apps
+2. **Install Homebrew** (if not installed):
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+   For Apple Silicon, also run:
+   ```bash
+   eval "$(/opt/homebrew/bin/brew shellenv)"
+   ```
+
+3. **Install all packages and apps**:
+   ```bash
+   brew bundle --file=~/dotfiles/Brewfile
+   ```
+
+4. **Install Oh My Zsh** (if not installed):
+   ```bash
+   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+   ```
+
+5. **Link config files** (backup existing files first):
+   ```bash
+   # .zshrc
+   [ -f ~/.zshrc ] && [ ! -L ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.backup
+   ln -sf ~/dotfiles/.zshrc ~/.zshrc
+
+   # .gitconfig
+   [ -f ~/.gitconfig ] && [ ! -L ~/.gitconfig ] && mv ~/.gitconfig ~/.gitconfig.backup
+   ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
+
+   # Zed settings
+   mkdir -p ~/.config/zed
+   [ -f ~/.config/zed/settings.json ] && [ ! -L ~/.config/zed/settings.json ] && mv ~/.config/zed/settings.json ~/.config/zed/settings.json.backup
+   ln -sf ~/dotfiles/config/zed/settings.json ~/.config/zed/settings.json
+   ```
+
+6. **Source autojump** (already in .zshrc, but verify):
+   The .zshrc should contain:
+   ```bash
+   [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+   ```
+
+7. **Restart the terminal** or run `source ~/.zshrc`
+
+## Alternative: Run the Setup Script
+
+Instead of manual steps, just run:
+```bash
+~/dotfiles/setup.sh
+```
+
+## What Gets Installed
+
+### Apps (casks)
+- Zed (editor)
+- Google Chrome
+- Rectangle (window manager)
+- iTerm2
+
+### Python tooling
+- python, uv, ruff
+
+### Node.js / TypeScript
+- node, pnpm, typescript
+
+### CLI tools
+- git, autojump
+
+### Shell
+- Oh My Zsh with plugins: git, autojump, common-aliases, aliases, docker, npm, brew
+
+## File Structure
+
+| File | Links to | Purpose |
+|------|----------|---------|
+| `.zshrc` | `~/.zshrc` | Zsh + Oh My Zsh config |
+| `.gitconfig` | `~/.gitconfig` | Git aliases (ci, co, st, etc.) + user info |
+| `config/zed/settings.json` | `~/.config/zed/settings.json` | Zed theme and fonts |
+| `Brewfile` | - | All Homebrew packages and casks |
+| `setup.sh` | - | Automated setup script |
 
 ## Common Tasks
 
-- **Add a new app**: Add `cask "app-name"` to Brewfile
-- **Add a CLI tool**: Add `brew "tool-name"` to Brewfile
-- **Add a zsh plugin**: Add to the `plugins=()` array in .zshrc
-- **Add a git alias**: Add to `[alias]` section in .gitconfig
+| Task | Command |
+|------|---------|
+| Add a new app | Add `cask "app-name"` to Brewfile, run `brew bundle` |
+| Add a CLI tool | Add `brew "tool-name"` to Brewfile, run `brew bundle` |
+| Add a zsh plugin | Add to `plugins=()` in .zshrc |
+| Add a git alias | Add to `[alias]` in .gitconfig |
+| Update Zed settings | Edit `config/zed/settings.json` |
 
-## Testing Changes
+## After Making Changes
 
-After modifying config files, run:
 ```bash
-source ~/.zshrc  # for shell changes
-```
-
-For Brewfile changes:
-```bash
-brew bundle --file=~/dotfiles/Brewfile
+cd ~/dotfiles
+git add -A
+git commit -m "Description of changes"
+git push
 ```
