@@ -7,7 +7,18 @@ Personal macOS development environment setup.
 On a fresh Mac:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
+# Install Xcode CLI tools (includes git)
+xcode-select --install
+
+# Clone this repo
+git clone https://github.com/rc-chandru/dotfiles.git ~/dotfiles
+
+# Run Claude Code and say "set up this Mac"
+claude
+```
+
+Or run the setup script directly:
+```bash
 ~/dotfiles/setup.sh
 ```
 
