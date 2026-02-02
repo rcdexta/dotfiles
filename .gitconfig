@@ -16,3 +16,6 @@
 	rs = reset
 	sh = stash
 	sp = stash pop
+[user]
+	name = RC
+	email = rc.chandru@gmail.com
