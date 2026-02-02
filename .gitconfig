@@ -1,0 +1,18 @@
+[alias]
+	ci = commit
+	co = checkout
+	br = branch
+	st = status
+	df = diff
+	dc = diff --cached
+	lg = log --oneline --graph --decorate
+	aa = add --all
+	cm = commit -m
+	ca = commit --amend
+	cp = cherry-pick
+	pl = pull
+	ps = push
+	rb = rebase
+	rs = reset
+	sh = stash
+	sp = stash pop

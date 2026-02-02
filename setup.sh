@@ -32,11 +32,16 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-# Link .zshrc
-echo "==> Linking .zshrc..."
+# Link config files
+echo "==> Linking config files..."
 if [ -f "$HOME/.zshrc" ] && [ ! -L "$HOME/.zshrc" ]; then
     mv "$HOME/.zshrc" "$HOME/.zshrc.backup"
 fi
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
+
+if [ -f "$HOME/.gitconfig" ] && [ ! -L "$HOME/.gitconfig" ]; then
+    mv "$HOME/.gitconfig" "$HOME/.gitconfig.backup"
+fi
+ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 
 echo "==> Setup complete! Restart your terminal."
