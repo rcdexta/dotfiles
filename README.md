@@ -11,7 +11,7 @@ On a fresh Mac:
 xcode-select --install
 
 # Clone this repo
-git clone https://github.com/rc-chandru/dotfiles.git ~/dotfiles
+git clone https://github.com/rcdexta/dotfiles.git ~/dotfiles
 
 # Run Claude Code and say "set up this Mac"
 claude
