@@ -1,0 +1,63 @@
+# Dotfiles
+
+Personal macOS development environment setup.
+
+## Quick Start
+
+On a fresh Mac:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
+~/dotfiles/setup.sh
+```
+
+## What's Included
+
+### Apps (via Homebrew)
+- Google Chrome
+- Rectangle (window manager)
+- iTerm2
+
+### CLI Tools
+- git
+- autojump
+
+### Shell
+- Oh My Zsh with plugins:
+  - git
+  - autojump
+  - common-aliases
+  - aliases
+  - docker
+  - npm
+  - brew
+
+### Git Aliases
+| Alias | Command |
+|-------|---------|
+| `git ci` | commit |
+| `git co` | checkout |
+| `git br` | branch |
+| `git st` | status |
+| `git df` | diff |
+| `git lg` | log --oneline --graph |
+| `git cm "msg"` | commit -m |
+| `git ca` | commit --amend |
+
+## Adding New Apps
+
+Edit `Brewfile` and run:
+```bash
+brew bundle --file=~/dotfiles/Brewfile
+```
+
+Find cask names with `brew search --cask <app>`.
+
+## Files
+
+| File | Description |
+|------|-------------|
+| `setup.sh` | Bootstrap script for new machines |
+| `Brewfile` | Homebrew packages and apps |
+| `.zshrc` | Zsh configuration |
+| `.gitconfig` | Git aliases and user config |
