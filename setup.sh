@@ -44,4 +44,11 @@ if [ -f "$HOME/.gitconfig" ] && [ ! -L "$HOME/.gitconfig" ]; then
 fi
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 
+# Link Zed config
+mkdir -p ~/.config/zed
+if [ -f "$HOME/.config/zed/settings.json" ] && [ ! -L "$HOME/.config/zed/settings.json" ]; then
+    mv "$HOME/.config/zed/settings.json" "$HOME/.config/zed/settings.json.backup"
+fi
+ln -sf ~/dotfiles/config/zed/settings.json ~/.config/zed/settings.json
+
 echo "==> Setup complete! Restart your terminal."

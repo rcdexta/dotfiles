@@ -14,9 +14,20 @@ git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
 ## What's Included
 
 ### Apps (via Homebrew)
+- Zed (editor)
 - Google Chrome
 - Rectangle (window manager)
 - iTerm2
+
+### Python
+- python
+- uv (fast package manager)
+- ruff (linter & formatter)
+
+### Node.js / TypeScript
+- node
+- pnpm (fast package manager)
+- typescript
 
 ### CLI Tools
 - git
@@ -61,3 +72,4 @@ Find cask names with `brew search --cask <app>`.
 | `Brewfile` | Homebrew packages and apps |
 | `.zshrc` | Zsh configuration |
 | `.gitconfig` | Git aliases and user config |
+| `config/zed/settings.json` | Zed editor settings |

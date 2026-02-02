@@ -8,6 +8,7 @@ This is a dotfiles repository for macOS development environment setup.
 - `Brewfile` - Homebrew Bundle file listing all packages and casks
 - `.zshrc` - Zsh config with Oh My Zsh plugins
 - `.gitconfig` - Git aliases and user configuration
+- `config/zed/settings.json` - Zed editor settings
 
 ## Conventions
 
