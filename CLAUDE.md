@@ -68,7 +68,7 @@ Instead of manual steps, just run:
 - Zed (editor)
 - Google Chrome
 - Rectangle (window manager)
-- iTerm2
+- Ghostty (GPU-accelerated terminal)
 
 ### Python tooling
 - python, uv, ruff
@@ -77,7 +77,9 @@ Instead of manual steps, just run:
 - node, pnpm, typescript
 
 ### CLI tools
-- git, autojump
+- git, gh, autojump
+- starship, zoxide, fzf (shell UX)
+- eza, bat, ripgrep (modern coreutils)
 
 ### Shell
 - Oh My Zsh with plugins: git, autojump, common-aliases, aliases, docker, npm, brew

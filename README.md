@@ -28,7 +28,7 @@ Or run the setup script directly:
 - Zed (editor)
 - Google Chrome
 - Rectangle (window manager)
-- iTerm2
+- Ghostty (GPU-accelerated terminal)
 
 ### Python
 - python
@@ -42,7 +42,12 @@ Or run the setup script directly:
 
 ### CLI Tools
 - git
+- gh (GitHub CLI)
 - autojump
+- starship (prompt)
+- zoxide (smarter cd)
+- fzf (fuzzy finder)
+- eza, bat, ripgrep (modern coreutils)
 
 ### Shell
 - Oh My Zsh with plugins:

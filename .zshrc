@@ -115,4 +115,15 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="$HOME/.local/bin:$PATH"
 
+# Modern CLI tools
+eval "$(starship init zsh)"          # Beautiful prompt
+eval "$(zoxide init zsh)"            # Smarter cd (use: z <dir>)
+source <(fzf --zsh)                  # Fuzzy finder (Ctrl+R for history)
+
+# Better defaults
+alias ls="eza --icons"
+alias ll="eza -la --icons"
+alias cat="bat --paging=never"
+alias grep="rg"
+
 # Claude Code mobile session
