@@ -51,4 +51,11 @@ if [ -f "$HOME/.config/zed/settings.json" ] && [ ! -L "$HOME/.config/zed/setting
 fi
 ln -sf ~/dotfiles/config/zed/settings.json ~/.config/zed/settings.json
 
+# Link Ghostty config
+mkdir -p ~/.config/ghostty
+if [ -f "$HOME/.config/ghostty/config" ] && [ ! -L "$HOME/.config/ghostty/config" ]; then
+    mv "$HOME/.config/ghostty/config" "$HOME/.config/ghostty/config.backup"
+fi
+ln -sf ~/dotfiles/config/ghostty/config ~/.config/ghostty/config
+
 echo "==> Setup complete! Restart your terminal."
