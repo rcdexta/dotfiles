@@ -9,7 +9,6 @@ brew "signal-cli"       # Signal messenger CLI for MCP integration
 
 # Modern CLI (better defaults)
 brew "starship"         # Beautiful prompt
-brew "zoxide"           # Smarter cd (z command)
 brew "fzf"              # Fuzzy finder (Ctrl+R)
 brew "eza"              # Better ls with icons
 brew "bat"              # Better cat with syntax highlighting
@@ -30,7 +29,6 @@ cask "google-chrome"
 cask "rectangle"
 cask "ghostty"          # GPU-accelerated terminal (replaces iTerm2)
 cask "zed"
-cask "signal"
 
 # Fonts
 cask "font-jetbrains-mono-nerd-font"
