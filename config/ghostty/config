@@ -6,25 +6,44 @@
 
 # ── Font ─────────────────────────────────────
 font-family = JetBrains Mono
-font-size = 12
+font-size = 13
 font-thicken = true
 
-# ligatures
-font-feature = +calt
-font-feature = +liga
-bold-is-bright = false
+# no ligatures (matching iTerm)
+bold-is-bright = true
 
-# line spacing (slight breathing room)
+# line spacing (~1.03 vertical spacing from iTerm)
 adjust-cell-height = 2
 
-# ── Theme ────────────────────────────────────
-# auto-switches with macOS light/dark mode
-theme = Calamity
+# ── Colors (from iTerm profile) ─────────────
+background = #252629
+foreground = #dbd3ca
+cursor-color = #c76363
+cursor-text = #dbd3ca
+selection-background = #314f52
+selection-foreground = #dbd3ca
+
+# ANSI 0–15
+palette = 0=#252629
+palette = 1=#c66b67
+palette = 2=#68a0a0
+palette = 3=#ad8301
+palette = 4=#eb9350
+palette = 5=#a89080
+palette = 6=#a89080
+palette = 7=#dbd3ca
+palette = 8=#575653
+palette = 9=#c66b67
+palette = 10=#68a0a0
+palette = 11=#d0a215
+palette = 12=#eb9350
+palette = 13=#a89080
+palette = 14=#a89080
+palette = 15=#fffcf0
 
 # ── Window ───────────────────────────────────
 macos-titlebar-style = tabs
-background-opacity = 0.92
-background-blur = 20
+background-opacity = 1
 window-padding-x = 8
 window-padding-y = 8
 window-padding-balance = true

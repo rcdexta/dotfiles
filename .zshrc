@@ -1,14 +1,15 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your Oh My Zsh installation.
+# Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
+# load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME=maran
+ZSH_THEME=edvardm
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,20 +71,9 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  autojump
-  common-aliases
-  aliases
-  docker
-  npm
-  brew
-)
+plugins=(git aliases branch autojump)
 
 source $ZSH/oh-my-zsh.sh
-
-# Autojump
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 # User configuration
 
@@ -96,34 +86,87 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='nvim'
+#   export EDITOR='mvim'
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
+# export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ls="ls --color=auto"
+
+# ============================================
+# Runtime Initialization (interactive shells only)
+# Note: Environment variables are in ~/.zshenv
+# ============================================
+
+# NVM initialization (interactive only)
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Pyenv initialization (interactive only)
+eval "$(pyenv init - zsh --no-rehash)"
+
+# Optimized completion initialization
+fpath+=~/.zfunc
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
+
+# ============================================
+# Claude Code Configuration
+# ============================================
+
+# Switch Claude Code to use DeepSeek v3.2
+use-deepseek() {
+  export ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic"
+  export ANTHROPIC_AUTH_TOKEN="$DEEPSEEK_API_KEY"
+  export API_TIMEOUT_MS=600000
+  export ANTHROPIC_MODEL="deepseek-chat"
+  export ANTHROPIC_SMALL_FAST_MODEL="deepseek-chat"
+  export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+  echo "Switched to DeepSeek v3.2"
+  echo "Run 'claude' to start a new session"
+}
+
+# Switch back to Anthropic Claude
+use-claude() {
+  unset ANTHROPIC_BASE_URL
+  unset ANTHROPIC_AUTH_TOKEN
+  unset API_TIMEOUT_MS
+  unset ANTHROPIC_MODEL
+  unset ANTHROPIC_SMALL_FAST_MODEL
+  unset CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC
+  echo "Switched to Anthropic Claude"
+  echo "Run 'claude' to start a new session"
+}
+
+# Alias for quick access
+alias deepseek='use-deepseek && claude'
+
+# ============================================
+# Additional Aliases
+# ============================================
+alias ccc="claude --dangerously-skip-permissions"
+
+# ============================================
+# Additional Completions
+# ============================================
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+# bun completions
+[ -s "/Users/rc/.bun/_bun" ] && source "/Users/rc/.bun/_bun"
+
+# Added by microsandbox installer
 export PATH="$HOME/.local/bin:$PATH"
-
-# Modern CLI tools
-eval "$(starship init zsh)"          # Beautiful prompt
-eval "$(zoxide init zsh)"            # Smarter cd (use: z <dir>)
-source <(fzf --zsh)                  # Fuzzy finder (Ctrl+R for history)
-
-# Better defaults
-alias ls="eza --icons"
-alias ll="eza -la --icons"
-alias cat="bat --paging=never"
-alias grep="rg"
-
-# Claude Code mobile session
+export DYLD_LIBRARY_PATH="$HOME/.local/lib:$DYLD_LIBRARY_PATH"

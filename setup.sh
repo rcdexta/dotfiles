@@ -58,4 +58,7 @@ if [ -f "$HOME/.config/ghostty/config" ] && [ ! -L "$HOME/.config/ghostty/config
 fi
 ln -sf ~/dotfiles/config/ghostty/config ~/.config/ghostty/config
 
+# Link Oh My Zsh custom theme
+ln -sf ~/dotfiles/oh-my-zsh/themes/edvardm.zsh-theme ~/.oh-my-zsh/themes/edvardm.zsh-theme
+
 echo "==> Setup complete! Restart your terminal."
